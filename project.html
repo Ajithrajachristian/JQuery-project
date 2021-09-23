@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align : center;
+            text-decoration: underline;
+            font-family: sans-serif;
+            color: blue;
+        }
+
+        button {
+            display: block;
+            margin : auto;
+            font-size: 30px;
+            padding: 10px;
+
+        }
+
+        body { 
+            background-color: whitesmoke ;
+            opacity: -10px;
+        }
+
+        img {
+            width : 500px;
+            height : auto;
+            box-shadow: 10px 10px 5px #000000;
+            display: block;
+            margin : auto; 
+        }
+    </style>
+</head>
+<body>
+
+
+    <button>Generate Character</button>
+    <strong>Name:</strong>
+    <h1 class ="name"></h1>
+    <strong>Gender:</strong>
+    <h1 class ="gender"></h1>
+    <strong>Height:</strong>
+    <h1 class = "height"></h1>
+    <strong>Mass:</strong>
+    <h1 class = "mass"></h1>
+    <strong>Equipment:</strong>
+    <h1 class = "equipment"></div>
+    <img src= "" class = "character-img" alt ="">
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+       
+           $("button").on("click", function() {
+               const randomNumber = Math.ceil(Math.random()*88)
+               $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${randomNumber}.json`, function(data) {
+                   console.log(data['name'])
+                   $("h1.name").text(data['name'])
+                   $("h1.gender").text(data['gender'])
+                   $("h1.height").text(data['height'])
+                   $("h1.mass").text(data['mass'])
+                   $("h1.equipment").text(data['equipment'])
+                   $(".character-img").attr("src",data['image'])
+               })
+           })
+        })
+    </script>
+</body>
+</html>
